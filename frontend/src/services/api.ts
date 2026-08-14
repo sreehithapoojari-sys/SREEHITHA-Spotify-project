@@ -1,5 +1,7 @@
-import axios from 'axios'
-const API_BASE_URL = 'https://YOUR-ACTUAL-RENDER-URL.onrender.com/api';
+import axios from 'axios';
+
+const API_BASE_URL =
+  'https://YOUR-REAL-RENDER-URL.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -42,7 +44,9 @@ export const getGenres = async () => {
 };
 
 export const getGenreDetail = async (genre: string) => {
-  const { data } = await api.get(`/genres/${encodeURIComponent(genre)}`);
+  const { data } = await api.get(
+    `/genres/${encodeURIComponent(genre)}`
+  );
   return data;
 };
 
@@ -58,7 +62,10 @@ export const getPlaylistDetail = async (playlist: string) => {
   return data;
 };
 
-export const searchSongs = async (q: string, limit: number = 10) => {
+export const searchSongs = async (
+  q: string,
+  limit: number = 10
+) => {
   const { data } = await api.get('/songs/search', {
     params: { q, limit },
   });
