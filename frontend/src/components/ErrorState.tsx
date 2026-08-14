@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { AlertCircle } from 'lucide-react';
 
 export const ErrorState = ({ message, onRetry }: { message: string; onRetry?: () => void }) => (
