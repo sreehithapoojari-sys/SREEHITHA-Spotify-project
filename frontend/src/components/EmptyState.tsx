@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { SearchX } from 'lucide-react';
 
 export const EmptyState = ({ message }: { message: string }) => (
