@@ -4,7 +4,7 @@ import { CLUSTER_COLORS } from '../types';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorState } from '../components/ErrorState';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { Users, Music, Activity } from 'lucide-react';
+import { Music, Activity } from 'lucide-react';
 
 export default function ClusterExplorer() {
   const [data, setData] = useState<any>(null);
