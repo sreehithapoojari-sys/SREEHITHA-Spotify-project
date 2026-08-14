@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, Database, BarChart3, TrendingUp, ScatterChart, Music, ListMusic, Sparkles, Cpu } from 'lucide-react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
