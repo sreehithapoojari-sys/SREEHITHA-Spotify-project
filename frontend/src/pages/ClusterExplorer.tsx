@@ -61,7 +61,8 @@ export default function ClusterExplorer() {
             <div className="flex items-center gap-3 mb-4">
               <div 
                 className="w-4 h-4 rounded-full" 
-                style={{ backgroundColor: CLUSTER_COLORS[id] || '#1DB954' }}
+      
+                style={{ backgroundColor: CLUSTER_COLORS[Number(id)] || '#1DB954' }}
               />
               <h2 className="text-2xl font-bold text-white">Cluster {id}: {details.name}</h2>
             </div>
