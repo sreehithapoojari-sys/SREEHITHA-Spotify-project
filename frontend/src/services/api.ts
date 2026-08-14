@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://spotify-api-xxxx.onrender.com/api';
+const API_BASE_URL = 'https://YOUR-ACTUAL-RENDER-URL.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -53,12 +53,16 @@ export const getPlaylists = async () => {
 };
 
 export const getPlaylistDetail = async (playlist: string) => {
-  const { data } = await api.get(`/playlists/${encodeURIComponent(playlist)}`);
+  const { data } = await api.get(
+    `/playlists/${encodeURIComponent(playlist)}`
+  );
   return data;
 };
 
 export const searchSongs = async (q: string, limit: number = 10) => {
-  const { data } = await api.get('/songs/search', { params: { q, limit } });
+  const { data } = await api.get('/songs/search', {
+    params: { q, limit },
+  });
   return data;
 };
 
