@@ -3,7 +3,7 @@ import { getModelInfo } from '../services/api';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorState } from '../components/ErrorState';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Brain, Activity, Server, Cpu } from 'lucide-react';
+import { Activity, Server, Cpu } from 'lucide-react';
 export default function ModelInsights() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
