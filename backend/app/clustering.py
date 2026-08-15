@@ -4,7 +4,7 @@ from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 import joblib
 import os
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ...))
+BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
 AUDIO_FEATURES = [
