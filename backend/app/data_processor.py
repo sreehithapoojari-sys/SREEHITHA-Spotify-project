@@ -4,7 +4,7 @@ import joblib
 import os
 import numpy as np
 
-DATA_PATH = r"c:\Users\smani\Downloads\New folder\spotify dataset.csv"
+DATA_PATH = '../spotify dataset.csv'
 MODEL_DIR = r"c:\Users\smani\Downloads\New folder\models"
 
 def load_and_preprocess():
