@@ -50,12 +50,10 @@ async def startup_event():
     app.state.pca_features = None
     app.state.dedup_df = dedup_df
 
-
-
     print("=" * 60)
     print("Startup complete - API is ready")
     print(f"  Tracks: {stats['final_rows']}")
-    print(f"  Clusters: {clustering_res['optimal_k']}")
+    print("  Clustering: deferred")
     print(f"  Features: {', '.join(features)}")
     print("=" * 60)
 
