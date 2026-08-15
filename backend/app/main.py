@@ -43,17 +43,18 @@ async def startup_event():
     app.state.analytics = compute_analytics(full_df, dedup_df, features)
     print(f"  Analytics computed for {len(features)} audio features")
 
-    print("[3/3] Clustering skipped during startup to reduce memory usage.")
-
-    app.state.clustering = None
-    app.state.labels = None
-    app.state.pca_features = None
-    app.state.dedup_df = dedup_df
+    print("[3/3] Running clustering (K-Means with silhouette optimization)...")
+    clustering_res, labels, pca_features, dedup_df_with_clusters = run_clustering(scaled_features, dedup_df)
+    app.state.clustering = clustering_res
+    app.state.labels = labels
+    app.state.pca_features = pca_features
+    app.state.dedup_df = dedup_df_with_clusters
+    print(f"  Optimal K={clustering_res['optimal_k']}, silhouette={clustering_res['best_silhouette']:.4f}")
 
     print("=" * 60)
     print("Startup complete - API is ready")
     print(f"  Tracks: {stats['final_rows']}")
-    print("  Clustering: deferred")
+    print(f"  Clusters: {clustering_res['optimal_k']}")
     print(f"  Features: {', '.join(features)}")
     print("=" * 60)
 
