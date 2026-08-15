@@ -4,8 +4,11 @@ import joblib
 import os
 import numpy as np
 
-DATA_PATH = r"c:\Users\smani\Downloads\New folder\spotify dataset.csv"
-MODEL_DIR = r"c:\Users\smani\Downloads\New folder\models"
+import os
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",".."))
+DATA_PATH = os.path.join(BASE_DIR, "spotify dataset.csv")
+MODEL_DIR = os.path.join(BASE_DIR, "models")
 
 def load_and_preprocess():
     if not os.path.exists(MODEL_DIR):
