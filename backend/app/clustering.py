@@ -1,11 +1,11 @@
-import numpy as np
+     import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 import joblib
 import os
 
-MODEL_DIR = r"c:\Users\smani\Downloads\New folder\models"
+MODEL_DIR = "models"
 
 AUDIO_FEATURES = [
     'danceability', 'energy', 'loudness', 'speechiness', 'acousticness',
@@ -16,45 +16,37 @@ def _generate_cluster_description(means, top_genres):
     """Auto-generate a human-readable cluster description from actual stats."""
     parts = []
 
-    # Energy level
     if means.get('energy', 0) > 0.75:
         parts.append("high energy")
     elif means.get('energy', 0) < 0.4:
         parts.append("low energy")
 
-    # Danceability
     if means.get('danceability', 0) > 0.72:
         parts.append("highly danceable")
     elif means.get('danceability', 0) < 0.45:
         parts.append("low danceability")
 
-    # Acousticness
     if means.get('acousticness', 0) > 0.5:
         parts.append("acoustic")
     elif means.get('acousticness', 0) < 0.1:
         parts.append("electronic/produced")
 
-    # Valence
     if means.get('valence', 0) > 0.65:
         parts.append("upbeat and positive")
     elif means.get('valence', 0) < 0.35:
         parts.append("moody and dark")
 
-    # Speechiness
     if means.get('speechiness', 0) > 0.2:
         parts.append("speech-heavy (likely rap/spoken word)")
 
-    # Instrumentalness
     if means.get('instrumentalness', 0) > 0.3:
         parts.append("instrumental-leaning")
 
-    # Loudness
     if means.get('loudness', 0) > -5:
         parts.append("loud")
     elif means.get('loudness', 0) < -10:
         parts.append("quiet")
 
-    # Tempo
     if means.get('tempo', 0) > 135:
         parts.append("fast tempo")
     elif means.get('tempo', 0) < 100:
@@ -63,7 +55,6 @@ def _generate_cluster_description(means, top_genres):
     if not parts:
         parts.append("moderate across all features")
 
-    # Genre info
     genre_names = list(top_genres.keys())[:2]
     genre_str = " and ".join(g.upper() for g in genre_names) if genre_names else "mixed"
 
@@ -96,11 +87,6 @@ def _generate_cluster_name(means, top_genres):
 
 
 def run_clustering(scaled_features, df):
-    if not os.path.exists(MODEL_DIR):
-        os.makedirs(MODEL_DIR, exist_ok=True)
-
-       best_k = 6
-    def run_clustering(scaled_features, df):
     if not os.path.exists(MODEL_DIR):
         os.makedirs(MODEL_DIR, exist_ok=True)
 
@@ -138,7 +124,6 @@ def run_clustering(scaled_features, df):
 
         means = {str(f): round(float(c_df[f].mean()), 4) for f in AUDIO_FEATURES}
 
-        # Representative songs (closest to cluster centroid)
         c_indices = np.where(c_mask.values)[0]
         c_centroid = scaled_features[c_indices].mean(axis=0)
         dists = np.linalg.norm(scaled_features[c_indices] - c_centroid, axis=1)
@@ -170,6 +155,7 @@ def run_clustering(scaled_features, df):
 
     # PCA scatter data (sample for frontend performance)
     max_scatter = 3000
+    rng = np.random.RandomState(42)
     if len(labels) > max_scatter:
         scatter_idx = rng.choice(len(labels), max_scatter, replace=False)
     else:
