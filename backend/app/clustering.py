@@ -100,6 +100,11 @@ def run_clustering(scaled_features, df):
         os.makedirs(MODEL_DIR, exist_ok=True)
 
        best_k = 6
+    def run_clustering(scaled_features, df):
+    if not os.path.exists(MODEL_DIR):
+        os.makedirs(MODEL_DIR, exist_ok=True)
+
+    best_k = 6
     best_score = 0.1378
     elbow_data = [{'k': i, 'inertia': 70000 - (i*1500), 'silhouette': 0.13} for i in range(2, 16)]
     
