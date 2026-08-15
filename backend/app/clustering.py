@@ -4,8 +4,8 @@ from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 import joblib
 import os
-BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-MODEL_DIR = os.path.join(BASE_DIR, "models")
+
+MODEL_DIR = r"c:\Users\smani\Downloads\New folder\models"
 
 AUDIO_FEATURES = [
     'danceability', 'energy', 'loudness', 'speechiness', 'acousticness',
